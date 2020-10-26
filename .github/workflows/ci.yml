@@ -23,4 +23,8 @@ jobs:
         port: ${{ secrets.PLANET_SSH_PORT }}
         username: ${{ secrets.PLANET_USER }}
         password: ${{ secrets.PLANET_PASSWORD }}
-        script: cd www && bundle exec rake assets:precompile RAILS_ENV=production && sudo service nginx restart
+        script: |
+          cd www
+          yarn insall
+          bundle exec rake assets:precompile RAILS_ENV=production
+          sudo service nginx restart
