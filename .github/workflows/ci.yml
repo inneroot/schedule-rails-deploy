@@ -1,0 +1,24 @@
+name: deploy_on_vps
+
+on: [push]
+
+jobs:
+  deploy:
+    runs-on: [ubuntu-latest]
+    steps:
+    - uses: actions/checkout@v2
+    - name: Copy dist recursively to remote
+      uses: garygrossgarten/github-action-scp@release
+      with:
+        local: schedule
+        remote: ${{ secrets.RAILS_IMG_SCHEDULE_PATH }}
+        host: ${{ secrets.PLANET_HOST }}
+        username: ${{ secrets.PLANET_HOST_USER }}
+        password: ${{ secrets.PLANET_HOST_PASSWORD }}
+    - name: Assets:precompile
+      uses: appleboy/ssh-action@master
+      with:
+        host: ${{ secrets.PLANET_HOST }}
+        username: ${{ secrets.PLANET_USER }}
+        password: ${{ secrets.PLANET_PASSWORD }}
+        script: cd www && bundle exec rake assets:precompile RAILS_ENV=production && sudo service nginx restart
