@@ -25,6 +25,9 @@ jobs:
         password: ${{ secrets.PLANET_PASSWORD }}
         script: |
           cd www
-          yarn insall
-          bundle exec rake assets:precompile RAILS_ENV=production
+          ruby --version
+          rails --version
           sudo service nginx restart
+        # yarn insall
+        # bundle exec rake assets:precompile RAILS_ENV=production
+        # sudo service nginx restart
