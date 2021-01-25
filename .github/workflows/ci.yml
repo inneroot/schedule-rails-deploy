@@ -24,10 +24,8 @@ jobs:
         username: ${{ secrets.PLANET_USER }}
         password: ${{ secrets.PLANET_PASSWORD }}
         script: |
-          cd www
-          ruby --version
-          rails --version
-          sudo service nginx restart
+          cd ~/www
+          ./recompile.sh
         # yarn insall
         # bundle exec rake assets:precompile RAILS_ENV=production
         # sudo service nginx restart
