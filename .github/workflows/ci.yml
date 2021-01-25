@@ -27,5 +27,4 @@ jobs:
         script: |
           cd ~/www
           pwd
-          rbenv root
           ./recompile.sh
