@@ -26,8 +26,5 @@ jobs:
         script_stop: true
         script: |
           cd ~/www
+          pwd
           ./recompile.sh
-          ls
-        # yarn insall
-        # bundle exec rake assets:precompile RAILS_ENV=production
-        # sudo service nginx restart
